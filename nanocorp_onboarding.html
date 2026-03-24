@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding | NanoCorp Honduras</title>
+  <meta name="description" content="Portal de onboarding para nuevos clientes de NanoCorp Honduras, representante de iTALKPTT LATAM." />
+  <style>
+    :root {
+      --bg: #08111f;
+      --bg-soft: #0f1b31;
+      --card: rgba(255,255,255,0.08);
+      --card-border: rgba(255,255,255,0.12);
+      --text: #eef4ff;
+      --muted: #b8c3d9;
+      --primary: #2aa8ff;
+      --primary-dark: #0b6fb7;
+      --success: #1ea672;
+      --danger: #d83b5c;
+      --shadow: 0 18px 45px rgba(0,0,0,0.28);
+      --radius: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(42,168,255,0.22), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(11,111,183,0.20), transparent 30%),
+        linear-gradient(160deg, #060c18 0%, #0a1426 45%, #08111f 100%);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 56px 0 28px;
+    }
+
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand-badge {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      box-shadow: var(--shadow);
+    }
+
+    .brand-copy small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 2px;
+    }
+
+    .brand-copy strong {
+      font-size: 1.05rem;
+    }
+
+    .partner-pill {
+      padding: 10px 14px;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,0.05);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .intro {
+      padding: 34px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro::after {
+      content: "";
+      position: absolute;
+      inset: auto -40px -40px auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42,168,255,0.35), transparent 65%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(42,168,255,0.13);
+      border: 1px solid rgba(42,168,255,0.24);
+      color: #d5ecff;
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 14px;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.05;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.04rem;
+      line-height: 1.7;
+      margin: 0 0 24px;
+      max-width: 58ch;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .mini-card {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .mini-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+    }
+
+    .mini-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    .form-card {
+      padding: 28px;
+    }
+
+    .card-title {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+    }
+
+    .card-copy {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.96rem;
+    }
+
+    form {
+      display: grid;
+      gap: 16px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .field,
+    .file-box {
+      display: block;
+      width: 100%;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px 15px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 14px;
+      background: rgba(10, 17, 31, 0.65);
+      color: var(--text);
+      font: inherit;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    }
+
+    input::file-selector-button {
+      border: 0;
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-right: 12px;
+      background: linear-gradient(135deg, rgba(42,168,255,0.95), rgba(11,111,183,0.95));
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(42,168,255,0.8);
+      box-shadow: 0 0 0 4px rgba(42,168,255,0.15);
+      transform: translateY(-1px);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .hint {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .docs-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .file-box {
+      padding: 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.09);
+    }
+
+    .submit-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 14px;
+      margin-top: 10px;
+    }
+
+    button {
+      appearance: none;
+      border: 0;
+      cursor: pointer;
+      padding: 15px 22px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: white;
+      font-weight: 700;
+      font-size: 0.98rem;
+      box-shadow: 0 12px 25px rgba(11,111,183,0.28);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+    }
+
+    button:hover { transform: translateY(-2px); }
+    button:disabled { opacity: 0.7; cursor: wait; }
+
+    .legal {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      max-width: 52ch;
+    }
+
+    .notice,
+    .status {
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 0.93rem;
+      line-height: 1.6;
+    }
+
+    .notice {
+      margin-top: 18px;
+      background: rgba(255, 196, 0, 0.10);
+      border: 1px solid rgba(255, 196, 0, 0.22);
+      color: #ffe8a1;
+    }
+
+    .status {
+      display: none;
+      margin-top: 6px;
+    }
+
+    .status.success {
+      display: block;
+      background: rgba(30,166,114,0.12);
+      border: 1px solid rgba(30,166,114,0.28);
+      color: #c7ffe8;
+    }
+
+    .status.error {
+      display: block;
+      background: rgba(216,59,92,0.12);
+      border: 1px solid rgba(216,59,92,0.28);
+      color: #ffd2dc;
+    }
+
+    .footer {
+      padding: 24px 0 40px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer a {
+      color: #dcecff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    @media (max-width: 920px) {
+      .hero-grid,
+      .field-row,
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .intro,
+      .form-card { padding: 24px; }
+    }
+
+    @media (max-width: 560px) {
+      .container { width: min(100% - 20px, 1120px); }
+      .hero { padding-top: 24px; }
+      .brand-badge { width: 42px; height: 42px; }
+      h1 { font-size: 2rem; }
+      button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <main class="hero">
+    <div class="container">
+      <div class="topbar">
+        <div class="brand">
+          <div class="brand-badge">NC</div>
+          <div class="brand-copy">
+            <small>NanoCorp Honduras</small>
+            <strong>Portal de Onboarding Comercial</strong>
+          </div>
+        </div>
+        <div class="partner-pill">Representante en Honduras de iTALKPTT LATAM</div>
+      </div>
+
+      <div class="hero-grid">
+        <section class="panel intro">
+          <div class="eyebrow">Onboarding seguro y centralizado</div>
+          <h1>Registro inicial para nuevos clientes corporativos</h1>
+          <p class="lead">
+            Complete el formulario para iniciar el proceso de alta comercial con NanoCorp. Nuestra empresa cumple con la normativa KYC/AML
+            Una vez enviado, la información y los documentos serán remitidos al correo de gestión indicado para revisión.
+          </p>
+
+          <div class="intro-grid">
+            <div class="mini-card">
+              <strong>Datos solicitados</strong>
+              <span>Correo electrónico y número telefónico del contacto principal.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Documentación legal</strong>
+              <span>Identidad, RTN, permiso de operación y acta de constitución.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Proceso ágil</strong>
+              <span>Una sola carga para concentrar toda la información requerida.</span>
+            </div>
+            <div class="mini-card">
+              <strong>Validación previa</strong>
+              <span>Campos obligatorios, formatos permitidos y aviso de tamaño recomendado.</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel form-card">
+          <h2 class="card-title">Formulario de onboarding</h2>
+          <p class="card-copy">
+            Adjunte los documentos en formato PDF o imagen. Se recomienda que cada archivo pese menos de 5&nbsp;MB para evitar rechazos del servicio de envío.
+          </p>
+
+          <form id="onboardingForm" action="https://formsubmit.co/diego.ramis@nano-corp.net" method="POST" input type="email" name="email">>
+            <input type="hidden" name="_subject" value="Nuevo onboarding | Delicias del Carmen | NanoCorp Honduras" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="empresa" value="Delicias del Carmen" />
+            <input type="hidden" name="canal" value="Portal de onboarding estático NanoCorp" />
+
+            <div class="field-row">
+              <div>
+                <label for="contactEmail">Correo electrónico de contacto</label>
+                <input class="field" id="contactEmail" name="email_contacto" type="email" placeholder="correo@empresa.com" required />
+              </div>
+              <div>
+                <label for="contactPhone">Teléfono de contacto</label>
+                <input class="field" id="contactPhone" name="telefono_contacto" type="tel" placeholder="+504 0000-0000" required />
+              </div>
+            </div>
+
+            <div>
+              <label for="notes">Observaciones adicionales</label>
+              <textarea id="notes" name="observaciones" placeholder="Agregue aquí cualquier comentario o detalle importante para el equipo de NanoCorp."></textarea>
+              <div class="hint">Este campo es opcional.</div>
+            </div>
+
+            <div class="docs-grid">
+              <div class="file-box">
+                <label for="idFile">Copia de la identidad del representante legal</label>
+                <input id="idFile" name="identidad_representante_legal" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" required />
+                <div class="hint">Formatos sugeridos: PDF, JPG, PNG o WEBP.</div>
+              </div>
+
+              <div class="file-box">
+                <label for="rtnFile">Copia del RTN de La Empresa</label>
+                <input id="rtnFile" name="rtn_delicias_del_carmen" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" required />
+                <div class="hint">Adjunte una copia legible y vigente.</div>
+              </div>
+
+              <div class="file-box">
+                <label for="permitFile">Copia del permiso de operación de la Empresa</label>
+                <input id="permitFile" name="permiso_operacion_delicias_del_carmen" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" required />
+                <div class="hint">Idealmente en PDF o fotografía nítida.</div>
+              </div>
+
+              <div class="file-box">
+                <label for="actaFile">Copia del acta de constitución de la empresa</label>
+                <input id="actaFile" name="acta_constitucion_delicias_del_carmen" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" required />
+                <div class="hint">Asegúrese de que el documento sea completamente legible.</div>
+              </div>
+            </div>
+
+            <div class="submit-wrap">
+              <button type="submit" id="submitBtn">Enviar documentación</button>
+              <div class="legal">
+                Al enviar este formulario, usted confirma que cuenta con autorización para compartir esta documentación con NanoCorp para fines de validación y onboarding comercial.
+              </div>
+            </div>
+
+            <div id="formStatus" class="status" aria-live="polite"></div>
+          </form>
+
+          <div class="notice">
+            <strong>Importante:</strong> este sitio es estático. Para que el envío al correo funcione en producción, FormSubmit requiere una activación inicial del destinatario por correo y puede imponer límites/tamaños de archivo según su servicio.
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      NanoCorp Honduras · Portal de onboarding para clientes corporativos · Referencia comercial de
+      <a href="https://www.italkpttlatam.com/" target="_blank" rel="noopener noreferrer">iTALKPTT LATAM</a>
+    </div>
+  </footer>
+
+  <script>
+    const form = document.getElementById('onboardingForm');
+    const statusBox = document.getElementById('formStatus');
+    const submitBtn = document.getElementById('submitBtn');
+
+    function setStatus(type, message) {
+      statusBox.className = `status ${type}`;
+      statusBox.textContent = message;
+    }
+
+    function validateFiles(formData) {
+      const entries = [
+        'identidad_representante_legal',
+        'rtn_delicias_del_carmen',
+        'permiso_operacion_delicias_del_carmen',
+        'acta_constitucion_delicias_del_carmen'
+      ];
+
+      for (const key of entries) {
+        const file = formData.get(key);
+        if (!file || !file.name) {
+          return 'Todos los documentos requeridos deben adjuntarse antes de enviar.';
+        }
+
+        const maxSize = 5 * 1024 * 1024;
+        if (file.size > maxSize) {
+          return `El archivo "${file.name}" supera el tamaño recomendado de 5 MB.`;
+        }
+      }
+
+      return null;
+    }
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      setStatus('', '');
+
+      const formData = new FormData(form);
+      const fileError = validateFiles(formData);
+
+      if (fileError) {
+        setStatus('error', fileError);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Enviando...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+
+        const data = await response.json();
+
+        if (response.ok && data.success === 'true') {
+          setStatus('success', 'La documentación fue enviada correctamente. El equipo de NanoCorp la revisará a la brevedad.');
+          form.reset();
+        } else {
+          setStatus('error', 'No fue posible completar el envío en este momento. Revise la activación del correo destinatario y vuelva a intentar.');
+        }
+      } catch (error) {
+        setStatus('error', 'Ocurrió un error de red al intentar enviar el formulario. Intente nuevamente en unos minutos.');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Enviar documentación';
+      }
+    });
+  </script>
+</body>
+</html>
